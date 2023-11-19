@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { IoCloudUploadOutline } from "react-icons/io5";
 import Papa from "papaparse";
 import { useNavigate } from "react-router-dom";
@@ -6,7 +5,6 @@ import { uniqueItemsArray } from "../utils";
 import useStore from "../store";
 
 const File = () => {
-  const [file, setFile] = useState("");
   const { setData, setUsers } = useStore();
   const allowedExtensions = ["csv"];
 
@@ -25,7 +23,7 @@ const File = () => {
           valuesArray.push(Object.values(d));
         });
         valuesArray.map((v) => {
-          usersArray.push(v[0]);
+          usersArray.push(v[0].trim().toLowerCase());
         });
         usersArray = uniqueItemsArray(usersArray);
         setUsers(usersArray);

@@ -43,7 +43,11 @@ const Login = () => {
       return;
     }
     const dbPassword = "1234";
-    if (users.includes(username) && password === dbPassword) {
+    console.log(users);
+    if (
+      users.includes(username.trim().toLowerCase()) &&
+      password === dbPassword
+    ) {
       setCurrentUser(username);
       navigate("/home");
     } else {
