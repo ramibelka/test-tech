@@ -19,7 +19,7 @@ export function useDataForUser(data, user) {
   }
   const array = [];
   data.map((elem) => {
-    if (elem[0] === user) {
+    if (elem[0].trim().toLowerCase() === user) {
       array.push(elem);
     }
   });

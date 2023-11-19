@@ -48,7 +48,7 @@ const Login = () => {
       users.includes(username.trim().toLowerCase()) &&
       password === dbPassword
     ) {
-      setCurrentUser(username);
+      setCurrentUser(username.trim().toLowerCase());
       navigate("/home");
     } else {
       alert("wrong username or password");
