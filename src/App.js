@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { Suspense } from "react";
+import "./App.css";
+import File from "./Pages/File";
+import Home from "./Pages/Home";
+import Layout from "./Components/Layout";
+import Login from "./Pages/Login";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route exact index element={<File />} />
+          <Route
+            path="login"
+            element={
+              <Suspense fallback={<h1>Loading ...</h1>}>
+                <Login />
+              </Suspense>
+            }
+          />
+          <Route
+            path="home"
+            element={
+              <Suspense fallback={<h1>Loading ...</h1>}>
+                <Home />
+              </Suspense>
+            }
+          />
+          <Route path="*" element={<h1>Sorry, no match</h1>} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
